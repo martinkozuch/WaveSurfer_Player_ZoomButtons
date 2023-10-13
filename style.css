@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./media/wallpapers/Dizajn\ bez\ názvu\ \(36\).png");
+    background-position: center;
+    background-repeat: none;
+    background-size: cover;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#waveform {
+    width: 40em;
+}
+
+.card {
+    width: 15em;
+    min-height: 15em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 12, 12, 0.72);
+    padding: 1em 3em;
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+    border: .1px solid rgb(165, 124, 71);
+    box-shadow: 0 0 200px rgba(255, 217, 0, 0.476);
+    flex-wrap: wrap;
+    margin-left: 1em;
+    margin-right: 1em;
+    transition: .3s ease-in;
+}
+
+.card img {
+    width: 12em;
+    height: 12em;
+    box-shadow: 0 0 100px rgba(217, 217, 217, 0.356);
+    border: 2px solid rgba(255, 217, 0, 0.476);
+    border-radius: 3px
+}
+
+.controls img {
+    border: none
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&family=Allura&family=Annie+Use+Your+Telescope&family=Anton&family=Babylonica&family=Barlow+Semi+Condensed:wght@300&family=Baskervville&family=Cabin+Sketch:wght@700&family=Cinzel&family=DM+Sans&family=Domine:wght@600&family=EB+Garamond:wght@600;700&family=Homemade+Apple&family=Indie+Flower&family=Josefin+Sans:ital,wght@1,600&family=Jost:ital,wght@0,500;0,600;1,500&family=Julee&family=Karma:wght@300&family=Kaushan+Script&family=Lobster+Two:ital@1&family=Lora:wght@400;700&family=Merriweather:wght@300&family=Mukta+Malar:wght@300&family=PT+Serif:ital,wght@0,700;1,700&family=Pacifico&family=Patrick+Hand&family=Playfair+Display&family=Poppins:wght@600&family=Rock+Salt&family=Rubik+Vinyl&family=Taviraj:wght@300&family=Tilt+Warp&family=Varela+Round&family=Young+Serif&display=swap');
+
+.card h2 {
+    margin-bottom: .5em;
+    font-family: 'PT Serif', serif;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.445);
+}
+
+.controls img {
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+    margin-left: .5em;
+    margin-right: .5em;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    padding-top: .5em;
+}
+
+.zoom-slider {
+    display: flex;
+    flex-direction: row;
+}
+
+.zoom-slider p {
+    margin-left: 1.5em;
+    margin-top: .2em;
+    font-weight: 600;
+    color: #dcb256;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buttons button {
+    margin-left: .5em;
+    padding: 4px 15px;
+    width: 100px;
+    height: 25px;
+    border: .1px solid  #c99e436e;;
+    color: rgba(255, 255, 255, 0.694);
+    background: #00000071;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 0 30px #dcb25672 ;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.buttons button:hover {
+    background: #4f4f4f71;
+}
+
+
+#zoomInput {
+    cursor: pointer;
+}
+
+.track-info {
+    display: none;
+    transition: 2s;
+}
+
+.card:hover {
+    width: 41em;
+    height: 28em;
+    cursor: pointer;
+}
+
+.card:hover .track-info {
+    display: block;
+}
+
+@media screen and (max-width: 994px) {
+    .card h2 {
+        text-align: center;
+    }
+
+    .card img {
+        margin-right: 0em;
+    }
+
+    #waveform {
+        margin-left: 1em;
+    }
+}
+
+
+@media screen and (max-width: 750px) {
+
+    #waveform {
+        width: 20em;
+    }
+
+    .zoom-slider p {
+        margin-right: 1em;
+        margin-left: .5em;
+    }
+   
+    .bottom {
+        flex-direction: column;
+    }
+    
+}
+
+@media screen and (max-width: 435px) {
+    #waveform {
+        width: 15em;
+    }
+}
+
+@media screen and (max-width: 403px) {
+    /* .bottom {
+        flex-direction: column;
+    } */
+    .buttons button {
+        margin-left: 2em;
+    }
+    .card:hover {
+        height: 30em;
+    }
+}
+
+@media screen and (max-width: 355px) {
+    .card {
+        padding: 1.5em
+    }
+}

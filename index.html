@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveSurfer App with Click Time Display</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&family=Allura&family=Annie+Use+Your+Telescope&family=Anton&family=Babylonica&family=Barlow+Semi+Condensed:wght@300&family=Baskervville&family=Cabin+Sketch:wght@700&family=Cinzel&family=DM+Sans&family=Domine:wght@600&family=EB+Garamond:wght@600;700&family=Homemade+Apple&family=Indie+Flower&family=Josefin+Sans:ital,wght@1,600&family=Jost:ital,wght@0,500;0,600;1,500&family=Julee&family=Karma:wght@300&family=Kaushan+Script&family=Lobster+Two:ital@1&family=Lora:wght@400;700&family=Merriweather:wght@300&family=Mukta+Malar:wght@300&family=PT+Serif:ital,wght@0,700;1,700&family=Pacifico&family=Patrick+Hand&family=Playfair+Display&family=Poppins:wght@600&family=Rock+Salt&family=Rubik+Vinyl&family=Taviraj:wght@300&family=Tilt+Warp&family=Varela+Round&family=Young+Serif&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+    <div class="card">
+        <img src="./media/wallpapers/Apashe - Requiem.png">
+        <div class="track-info">
+            <h2>Apashe - Majesty</h2>
+            <div id="waveform"></div>
+
+            <div class="bottom">
+                <div class="zoom-slider">
+                    <div class="controls">
+                        <img src="media/play-white.png" id="playBtn">
+                        <img src="media/stop-white.png" id="stopBtn">
+                    </div>
+                    <p id="currentTime">Seconds played: 0</p>
+                </div>
+                <div class="buttons">
+                    <button id="zoomOutBtn">Zoom Out</button>
+                    <button id="zoomInBtn">Zoom In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+        import Hover from 'https://unpkg.com/wavesurfer.js@7/dist/plugins/hover.esm.js'
+        const wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#ffffff',
+            progressColor: '#dcb256',
+            barWidth: 2,
+            hideScrollbar: true,
+            barRadius: 4,
+            responsive: true,
+            url: './media/Apashe_Majesty.mp3',
+            plugins: [
+                Hover.create({
+                    lineColor: '#030303',
+                    lineWidth: 1,
+                    labelBackground: '#121212',
+                    labelColor: '#f0f0f0',
+                    labelSize: '11px',
+                }),
+            ],
+        });
+
+        const zoomInBtn = document.getElementById('zoomInBtn');
+        const zoomOutBtn = document.getElementById('zoomOutBtn');
+        const currentTimeElement = document.getElementById('currentTime');
+        const playBtn = document.getElementById("playBtn");
+        const volumeBtn = document.getElementById("volumeBtn");
+        let currentZoom = 0;
+
+        zoomInBtn.addEventListener('click', () => {
+            if (currentZoom > 100) {
+                currentZoom = 100
+            } else {
+                currentZoom += 20
+                wavesurfer.zoom(currentZoom);
+            }
+        });
+
+        zoomOutBtn.addEventListener('click', () => {
+            if (currentZoom < 0) {
+                currentZoom = 0;
+            } else {
+                currentZoom -= 20;
+                wavesurfer.zoom(currentZoom);
+            }
+
+        });
+
+        playBtn.onclick = function () {
+            wavesurfer.playPause();
+            if (playBtn.src.includes("play-white.png")) {
+                playBtn.src = "/media/pause-white.png";
+            } else {
+                playBtn.src = "media/play-white.png"
+            }
+        }
+
+        stopBtn.onclick = function () {
+            wavesurfer.stop();
+        }
+
+        wavesurfer.on('timeupdate', () => {
+            const currentTime = wavesurfer.getCurrentTime();
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = currentTime % 60;
+            currentTimeElement.innerText = `${minutes}:${seconds.toFixed(0).padStart(2, '0')}`;
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
