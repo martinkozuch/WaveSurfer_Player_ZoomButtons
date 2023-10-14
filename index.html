@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WaveSurfer App with Click Time Display</title>
+    <title>WaveSurfer Player App</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&family=Allura&family=Annie+Use+Your+Telescope&family=Anton&family=Babylonica&family=Barlow+Semi+Condensed:wght@300&family=Baskervville&family=Cabin+Sketch:wght@700&family=Cinzel&family=DM+Sans&family=Domine:wght@600&family=EB+Garamond:wght@600;700&family=Homemade+Apple&family=Indie+Flower&family=Josefin+Sans:ital,wght@1,600&family=Jost:ital,wght@0,500;0,600;1,500&family=Julee&family=Karma:wght@300&family=Kaushan+Script&family=Lobster+Two:ital@1&family=Lora:wght@400;700&family=Merriweather:wght@300&family=Mukta+Malar:wght@300&family=PT+Serif:ital,wght@0,700;1,700&family=Pacifico&family=Patrick+Hand&family=Playfair+Display&family=Poppins:wght@600&family=Rock+Salt&family=Rubik+Vinyl&family=Taviraj:wght@300&family=Tilt+Warp&family=Varela+Round&family=Young+Serif&display=swap"
         rel="stylesheet">
@@ -61,7 +61,7 @@
         const zoomOutBtn = document.getElementById('zoomOutBtn');
         const currentTimeElement = document.getElementById('currentTime');
         const playBtn = document.getElementById("playBtn");
-        const volumeBtn = document.getElementById("volumeBtn");
+        const stopBtn = document.getElementById("stopBtn")
         let currentZoom = 0;
 
         zoomInBtn.addEventListener('click', () => {
@@ -73,6 +73,15 @@
             }
         });
 
+        zoomInBtn.addEventListener('click', () => {
+            if (currentZoom > 100) {
+                currentZoom = 100
+            } else {
+                currentZoom += 20
+                wavesurfer.zoom(currentZoom);
+            }
+        })
+
         zoomOutBtn.addEventListener('click', () => {
             if (currentZoom < 0) {
                 currentZoom = 0;
@@ -80,7 +89,6 @@
                 currentZoom -= 20;
                 wavesurfer.zoom(currentZoom);
             }
-
         });
 
         playBtn.onclick = function () {
@@ -107,6 +115,3 @@
 </body>
 
 </html>
-
-
-
