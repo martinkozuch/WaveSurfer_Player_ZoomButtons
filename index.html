@@ -71,15 +71,6 @@
                 currentZoom += 20
                 wavesurfer.zoom(currentZoom);
             }
-        });
-
-        zoomInBtn.addEventListener('click', () => {
-            if (currentZoom > 100) {
-                currentZoom = 100
-            } else {
-                currentZoom += 20
-                wavesurfer.zoom(currentZoom);
-            }
         })
 
         zoomOutBtn.addEventListener('click', () => {
